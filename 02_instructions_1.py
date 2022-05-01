@@ -22,7 +22,11 @@ def yes_no_checker(question):
 
 
 # Main routine...
-show_instructions = yes_no_checker("Would you like to see the instructions? ")
-print(f"You chose {show_instructions}")
-if show_instructions == "yes":
-    print("<<<INSTRUCTIONS>>>")
+played_before = yes_no_checker("Have you played Lucky Unicorn before? ")
+print(f"You chose {played_before}")
+
+if played_before == "no":
+    show_instructions = yes_no_checker("Would you like to see the instructions? ")
+    print(f"You chose {show_instructions}")
+    if show_instructions == "yes":
+        print("<<<INSTRUCTIONS>>>")
