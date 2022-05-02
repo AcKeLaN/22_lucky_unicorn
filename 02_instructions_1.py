@@ -28,5 +28,12 @@ print(f"You chose {played_before}")
 if played_before == "no":
     show_instructions = yes_no_checker("Would you like to see the instructions? ")
     print(f"You chose {show_instructions}")
-    if show_instructions == "yes":
+    if show_instructions == "yes" or show_instructions == "y":
         print("<<<INSTRUCTIONS>>>")
+    elif show_instructions == "no" or show_instructions == "n":
+        recheck_show_instructions = yes_no_checker("Are you sure? ")
+        if recheck_show_instructions == "yes" or recheck_show_instructions == "y":
+            print("<<<INSTRUCTIONS>>>")
+        else:
+            print("<<<CONTINUE TO GAME>>>")
+
