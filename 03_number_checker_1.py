@@ -22,6 +22,7 @@ def yes_no_checker(question):
             print("<<<ERROR>>>\n<<<PLEASE ENTER YES OR NO>>>")
 
 
+# Number Checker function for collecting how much the user would like to bet
 def number_checker(question):
 
     looping = True
@@ -29,8 +30,10 @@ def number_checker(question):
     while looping:
 
         try:
+            # Ask the user how much they would like to bet
             bet_amount = int(input(question))
 
+            # Check validity of input
             if 0 < bet_amount < 11:
                 recheck_bet_amount = yes_no_checker(f"Are you sure you would like to bet ${bet_amount}? ")
                 if recheck_bet_amount == "yes":
@@ -39,6 +42,7 @@ def number_checker(question):
             else:
                 print("Please enter a number between 1 and 10.")
 
+        # Check validity  of input 2
         except ValueError:
             print("Please enter a number between 1 and 10.")
 
