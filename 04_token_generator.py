@@ -59,11 +59,11 @@ def token_generator():
         while bet_counter > 0:
             give_token = yes_no_checker("Input 'yes' to generate a token... ")
             if give_token == "yes":
-                token = randint(1, 4)
-                if token == 1:
+                token = randint(1, 10)
+                if 1 <= token <= 4:
                     print("Donkey")
                     return token
-                elif token == 2:
+                elif 5 <= token <= 6:
                     print("Horse")
                     return token
                 elif token == 3:
@@ -78,4 +78,3 @@ def token_generator():
 bet_counter = number_checker("How much money would you like to bet on your game? ")
 print(f"You are betting ${bet_counter}")
 print_token = token_generator()
-print(print_token)
