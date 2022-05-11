@@ -1,4 +1,5 @@
 from random import randint
+from time import sleep
 
 
 # Yes/No checker function for various validity checks
@@ -79,18 +80,19 @@ def token_generator():
         while bet_counter > 0:
             give_token = press_enter("Press enter to start the game... ")
             if give_token == "":
+                sleep(3)
                 token = randint(1, 10)
-                if 1 <= token <= 4:
-                    print("Donkey")
+                if 1 <= token <= 5:
+                    print("You got a Donkey!")
                     return token
-                elif 5 <= token <= 6:
-                    print("Horse")
+                elif 6 <= token <= 7:
+                    print("You got a Horse!")
                     return token
-                elif token == 3:
-                    print("Zebra")
+                elif 8 <= token <= 9:
+                    print("You got a Zebra!")
                     return token
-                elif token == 4:
-                    print("Unicorn")
+                elif token == 10:
+                    print("You got a Unicorn!")
                     return token
 
 
