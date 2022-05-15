@@ -72,31 +72,42 @@ def number_checker(question):
 
 
 # Token Generator function that generates a token
-def token_generator():
+def token_generator(bet_counter=None):
 
     looping = True
 
     while looping:
-        while bet_counter > 0:
+        while total_money > 0:
             give_token = press_enter("Press enter to start the game... ")
             if give_token == "":
                 sleep(3)
                 token = randint(1, 10)
+
                 if 1 <= token <= 5:
                     print("You got a Donkey!")
-                    return token
+                    print("You have won $0.00!")
+                    total_money = total_money - 1
+                    print(f"You have ${total_money} left.")
+
                 elif 6 <= token <= 7:
                     print("You got a Horse!")
-                    return token
+                    print("You have won 50 cents!")
+                    total_money = total_money - 0.5
+                    print(f"You have ${total_money} left.")
+
                 elif 8 <= token <= 9:
                     print("You got a Zebra!")
-                    return token
+                    print("You have won 50 cents!")
+                    total_money = total_money - 0.5
+                    print(f"You have ${bet_counter} left.")
+
                 elif token == 10:
                     print("You got a Unicorn!")
-                    return token
+                    print("You have won $5.00!")
+                    total_money = total_money + 4
+                    print(f"You have ${total_money} left.")
 
 
 # Main Routine
-bet_counter = number_checker("How much money would you like to bet on your game? ")
-print(f"You are betting ${bet_counter}")
-print_token = token_generator()
+total_money = number_checker("How much money would you like to bet on your game? ")
+print(f"You are betting ${total_money}")
