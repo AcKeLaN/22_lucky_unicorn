@@ -39,28 +39,28 @@ def instructions():
 
 
 # Number Checker function for collecting how much the user would like to bet
-def number_checker(question):
+def num_check():
+    error = "Please enter a whole number between 1 and 10\n"
 
-    looping = True
-
-    while looping:
-
+    valid = False
+    while not valid:
         try:
-            # Ask the user how much they would like to bet
-            bet_amount = int(input(question))
+            # Ask the user the question
+            response = int(input("How many rounds would you like to pay? \n"
+                                 "The cost is $1 per round "))
 
-            # Check validity of input
-            if 0 < bet_amount < 11:
-                recheck_bet_amount = yes_no_checker(f"Are you sure you would like to bet ${bet_amount}? ")
-                if recheck_bet_amount == "yes":
-                    return bet_amount
+            # If the amount is too low / high, give feedback
+            if 0 < response <= 10:
+                print(f"You have asked to play with ${response} ")
+                valid = True
+                return response
 
+            # Display an error
             else:
-                print("Please enter a number between 1 and 10.")
+                print(error)
 
-        # Check validity  of input 2
         except ValueError:
-            print("Please enter a number between 1 and 10.")
+            print(error)
 
 
 # Main routine...
@@ -77,8 +77,5 @@ if played_before == "no":
         if recheck_show_instructions == "yes" or recheck_show_instructions == "y":
             instructions()
         else:
-            bet_counter = number_checker("How much money would you like to bet on your game? ")
-            print(f"You are betting ${bet_counter}")
+            num_check()
 
-bet_counter = number_checker("How much money would you like to bet on your game? ")
-print(f"You are betting ${bet_counter}")
