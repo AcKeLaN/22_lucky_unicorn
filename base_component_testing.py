@@ -39,20 +39,17 @@ def instructions():
 
 
 # Number Checker function for collecting how much the user would like to bet
-def num_check():
+def num_check(question, low, high):
     error = "Please enter a whole number between 1 and 10\n"
 
     valid = False
     while not valid:
         try:
             # Ask the user the question
-            response = int(input("How many rounds would you like to pay? \n"
-                                 "The cost is $1 per round "))
+            response = int(input(question))
 
             # If the amount is too low / high, give feedback
-            if 0 < response <= 10:
-                print(f"You have asked to play with ${response} ")
-                valid = True
+            if low < response <= high:
                 return response
 
             # Display an error
@@ -68,14 +65,10 @@ played_before = yes_no_checker("Have you played Lucky Unicorn before? ")
 print(f"You chose {played_before}")
 
 if played_before == "no":
-    show_instructions = yes_no_checker("Would you like to see the instructions? ")
-    print(f"You chose {show_instructions}")
-    if show_instructions == "yes" or show_instructions == "y":
-        instructions()
-    elif show_instructions == "no" or show_instructions == "n":
-        recheck_show_instructions = yes_no_checker("Are you sure? Would you like to see the instructions? ")
-        if recheck_show_instructions == "yes" or recheck_show_instructions == "y":
-            instructions()
-        else:
-            num_check()
+    instructions()
+
+how_much = num_check("How many rounds would you like to pay? \n"
+                     "The cost is $1 per round ", 0, 10)
+
+print(f"You will be spending ${how_much}")
 

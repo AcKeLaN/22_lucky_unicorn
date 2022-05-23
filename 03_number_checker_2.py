@@ -1,18 +1,15 @@
 # Functions
-def num_check():
+def num_check(question, low, high):
     error = "Please enter a whole number between 1 and 10\n"
 
     valid = False
     while not valid:
         try:
             # Ask the user the question
-            response = int(input("How many rounds would you like to pay? \n"
-                                 "The cost is $1 per round "))
+            response = int(input(question))
 
             # If the amount is too low / high, give feedback
-            if 0 < response <= 10:
-                print(f"You have asked to play with ${response} ")
-                valid = True
+            if low < response <= high:
                 return response
 
             # Display an error
@@ -24,4 +21,7 @@ def num_check():
 
 
 # Main Routine
-num_check()
+how_much = num_check("How many rounds would you like to pay? \n"
+                     "The cost is $1 per round ", 0, 10)
+
+print(f"You will be spending ${how_much}")
