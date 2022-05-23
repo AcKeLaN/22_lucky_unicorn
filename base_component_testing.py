@@ -89,11 +89,13 @@ def token_generator():
 
     starting_balance = how_much
     balance = starting_balance
+    round_counter = how_much
 
     # Generate tokens
     start_round = press_enter("Press enter to start your round ")
     if start_round == "":
         chosen_num = random.randint(1, 100)
+        round_counter -= 1
 
         # Adjust balance
         if 1 <= chosen_num <= 5:
@@ -111,6 +113,10 @@ def token_generator():
 
         # Output
         print(f"Token: {chosen} / Balance: ${balance}")
+        con = yes_no_checker("Would you like to continue? Y/N ")
+
+        if con == "yes" or con == "y":
+            start_round = press_enter("Press enter to start your round ")
 
 
 # Main routine...
