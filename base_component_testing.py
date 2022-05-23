@@ -1,3 +1,6 @@
+import random
+
+
 # Yes/No checker function for various validity checks
 def yes_no_checker(question):
 
@@ -23,8 +26,28 @@ def yes_no_checker(question):
                   "Please enter either 'yes' or 'no'.")
 
 
+# Press Enter function for token generator
+def press_enter(question):
+
+    looping = True
+
+    while looping:
+        # Ask the user if they have played before
+        user_response = input(question).strip().lower()
+
+        # If user answers yes, game continues
+        if user_response == "":
+            return user_response
+
+        # If user answers anything other than yes or no
+        else:
+            print("Invalid Input\n"
+                  "Please press enter to start your round ")
+
+
 # Instructions function for displaying instructions when called
 def instructions():
+
     print("INSTRUCTIONS:\n"
           "You must pay an amount of money (up to $10.00) to start the game.\n"
           "Each round costs $1.00.\n"
@@ -40,6 +63,7 @@ def instructions():
 
 # Number Checker function for collecting how much the user would like to bet
 def num_check(question, low, high):
+
     error = "Please enter a whole number between 1 and 10\n"
 
     valid = False
@@ -60,6 +84,35 @@ def num_check(question, low, high):
             print(error)
 
 
+# Token Generator function for generating tokens
+def token_generator():
+
+    starting_balance = how_much
+    balance = starting_balance
+
+    # Generate tokens
+    start_round = press_enter("Press enter to start your round ")
+    if start_round == "":
+        chosen_num = random.randint(1, 100)
+
+        # Adjust balance
+        if 1 <= chosen_num <= 5:
+            chosen = "unicorn"
+            balance += 4
+        elif 6 <= chosen_num <= 36:
+            chosen = "donkey"
+            balance -= 1
+        else:
+            if chosen_num % 2 == 0:
+                chosen = "horse"
+            else:
+                chosen = "zebra"
+            balance -= 0.5
+
+        # Output
+        print(f"Token: {chosen} / Balance: ${balance}")
+
+
 # Main routine...
 played_before = yes_no_checker("Have you played Lucky Unicorn before? ")
 print(f"You chose {played_before}")
@@ -72,3 +125,4 @@ how_much = num_check("How many rounds would you like to pay? \n"
 
 print(f"You will be spending ${how_much}")
 
+token_generator()
