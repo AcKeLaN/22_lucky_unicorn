@@ -1,4 +1,8 @@
+# Lucky Unicorn Base Component
+
+# Imports
 import random
+import time
 
 
 # Yes/No checker function for various validity checks
@@ -58,7 +62,7 @@ def instructions():
           "if you get a Zebra or Horse you win 50c.\n"
           "if you get a Donkey you win nothing.\n"
           "You can choose to stop playing after any round.\n"
-          "HAVE FUN!")
+          "HAVE FUN!\n")
 
 
 # Number Checker function for collecting how much the user would like to bet
@@ -91,42 +95,55 @@ def token_generator():
     balance = starting_balance
     round_counter = how_much
 
-    # Generate tokens
-    start_round = press_enter("Press enter to start your round ")
-    if start_round == "":
-        chosen_num = random.randint(1, 100)
-        round_counter -= 1
+    valid = False
 
-        # Adjust balance
-        if 1 <= chosen_num <= 5:
-            chosen = "unicorn"
-            balance += 4
-        elif 6 <= chosen_num <= 36:
-            chosen = "donkey"
-            balance -= 1
-        else:
-            if chosen_num % 2 == 0:
-                chosen = "horse"
+    while not valid:
+
+        # Generate tokens
+        start_round = press_enter("Press enter to start your round ")
+        if start_round == "":
+            time.sleep(3)
+            chosen_num = random.randint(1, 100)
+            round_counter -= 1
+
+            # Adjust balance
+            if 1 <= chosen_num <= 5:
+                chosen = "unicorn"
+                balance += 4
+            elif 6 <= chosen_num <= 36:
+                chosen = "donkey"
+                balance -= 1
             else:
-                chosen = "zebra"
-            balance -= 0.5
+                if chosen_num % 2 == 0:
+                    chosen = "horse"
+                else:
+                    chosen = "zebra"
+                balance -= 0.5
 
-        # Output
-        print(f"Token: {chosen} / Balance: ${balance}")
-        con = yes_no_checker("Would you like to continue? Y/N ")
+            # Output
+            print(f"You got a {chosen}!\n")
 
-        if con == "yes" or con == "y":
-            start_round = press_enter("Press enter to start your round ")
+            # Looping
+            if round_counter > 0:
+                con = yes_no_checker("Would you like to continue? Y/N ").strip().lower()
+
+                if con == "no" or con == "n":
+                    valid = True
+
+            if round_counter <= 0 or valid == True:
+                print(f"---GAME OVER---\n"
+                      f"Your final balance is ${balance}")
+                break
 
 
 # Main routine...
 played_before = yes_no_checker("Have you played Lucky Unicorn before? ")
-print(f"You chose {played_before}")
+print(f"You chose {played_before}\n")
 
 if played_before == "no":
     instructions()
 
-how_much = num_check("How many rounds would you like to pay? \n"
+how_much = num_check("How many rounds would you like to play? \n"
                      "The cost is $1 per round ", 0, 10)
 
 print(f"You will be spending ${how_much}")

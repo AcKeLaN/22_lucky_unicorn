@@ -33,3 +33,4 @@ def token_generator():
 
 
 # Main Routine
+token_generator()
