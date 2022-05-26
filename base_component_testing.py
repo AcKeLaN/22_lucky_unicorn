@@ -5,6 +5,22 @@ import random
 import time
 
 
+# Statement Generator for titles
+def statement_gen(statement, decoration):
+
+    sides = decoration * 3
+
+    statement = f"{sides}  {statement}  {sides}"
+
+    top_bottom = decoration * len(statement)
+
+    print(top_bottom)
+    print(statement)
+    print(top_bottom)
+
+    return ""
+
+
 # Yes/No checker function for various validity checks
 def yes_no_checker(question):
 
