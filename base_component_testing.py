@@ -105,7 +105,7 @@ def num_check(question, low, high):
 
 
 # Token Generator function for generating tokens
-def token_generator():
+def token_gen_and_looping():
 
     starting_balance = how_much
     balance = starting_balance
@@ -137,7 +137,8 @@ def token_generator():
                 balance -= 0.5
 
             # Output
-            print(f"You got a {chosen}!\n")
+            statement_gen(f"You got a {chosen}!", "!")
+            print()
 
             # Looping
             if round_counter > 0:
@@ -147,16 +148,18 @@ def token_generator():
                     valid = True
 
             if round_counter <= 0 or valid == True:
-                print(f"---GAME OVER---\n"
-                      f"Your final balance is ${balance}")
-                break
+                statement_gen("GAME OVER", "-")
+                print(f"Your final balance is ${balance}")
+                valid = True
 
 
 # Main routine...
+statement_gen("Welcome to the Lucky Unicorn Game", "*")
+print()
 played_before = yes_no_checker("Have you played Lucky Unicorn before? ")
-print(f"You chose {played_before}\n")
 
 if played_before == "no":
+    print()
     instructions()
 
 how_much = num_check("How many rounds would you like to play? \n"
@@ -164,4 +167,4 @@ how_much = num_check("How many rounds would you like to play? \n"
 
 print(f"You will be spending ${how_much}")
 
-token_generator()
+token_gen_and_looping()
