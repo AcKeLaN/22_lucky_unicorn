@@ -16,4 +16,3 @@ def statement_gen(statement, decoration):
 
 # Main Routine
 statement_gen("Welcome to the Lucky Unicorn Game", "*")
-
