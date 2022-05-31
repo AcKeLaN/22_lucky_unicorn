@@ -25,3 +25,4 @@ how_much = num_check("How many rounds would you like to pay? \n"
                      "The cost is $1 per round ", 0, 10)
 
 print(f"You will be spending ${how_much}")
+
