@@ -5,11 +5,11 @@ for i in range(0, 20):
     print(number, end='\n')
 
 greeting = "GO FUCK YOURSELF"
-sides = "*" * 3
+sides = "-" * 3
 
 greeting = f"{sides}  {greeting}  {sides}"
 
-top_bottom = "*" * len(greeting)
+top_bottom = "-" * len(greeting)
 
 print(top_bottom)
 print(greeting)
